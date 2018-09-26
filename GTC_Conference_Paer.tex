@@ -63,16 +63,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\abstractname}{Session description}
 \begin{abstract}
- In this work, we present the performance results of an in-house compressible DNS code, on the latest GPU architectures.
+ In this work, we present the performance results of an in-house compressible Direct Numerical Simulation (DNS) code on the latest GPU architectures.
  This GPU-accelerated code named ANUROOP solves 3D Navier-Stokes equations using an unstructured finite volume framework.
- Previously in GTC-2018, we had presented methodologies and optimization techniques used in converting ANUROOP from C++ to
- GPU-enabled CUDA. Both weak and strong scaling results on IBM Minsky (Power8, P100) cluster were presented along with the
- comparison between the strong scaling results of P100, K20, and on CPUs (Intel Haswell). In light of the recent developments,
- we present herein the weak and strong scaling results on the latest V100 GPUs. The results indicate 
- that the performance on the V100 is approximately twice as fast as that on P100. In addition, the code scales linearly up 
- to all 25 nodes of Prometheus cluster, which corresponds to 200 V100 cards. We also observe similar performance on Power9, V100 GPUs,
- along with the 32GB version of the V100 GPU card. 
- 
+ Previously in GTC-2018, we had presented the methodologies and optimization techniques used in converting ANUROOP from C++ to
+ GPU-enabled CUDA. Both weak and strong scaling results on P100 GPUs were presented along with the comparison between the 
+ strong scaling results of P100, K20, and on CPUs. In light of the recent developments, we present herein the weak and 
+ strong scaling results on the latest V100 GPUs. The results indicate that the performance on the V100 is approximately 
+ twice as fast as that on P100. In addition, the code scales linearly up to all 25 nodes of Prometheus cluster (each node
+ has 8 V100 GPUs), which corresponds to 200 V100 cards. We also observe similar performance on Power9, V100 GPUs, along with the 32GB version of the V100 GPU card. 
+ \end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Extended abstract}
+The  fluid  flow  over  a  gas  turbine  blade  has  been  called  a  fluid-dynamical  zoo,  because  it  exhibits a rich diversity of  flow  phenomena,  whose  study is of considerable interest to both fluid dynamicists and practising engineers. With the advent of modern computing technologies, direct numerical simulations (without using any turbulence models) provide an unprecedented insight into the
+rich and complex flow physics in these systems. 
+In this work, we extend our previous developments with regards to the performance of a GPU-enabled DNS code named ANUROOP. 
+This code has been developed at JNCASR, Bengaluru to simulate the complex flow past gas turbine blades. All the benchmark studies reported in this work are for a flow past the widely studied low-pressure turbine blade T106A, with the runtime of the first 1000 iterations (excluding I/O time) being taken for the performance analysis. Performance metrics as governed by the strong and weak scaling studies have been previously carried out on an IBM Power System S822LC cluster code-named Minsky (USA), DHRUVA-3 (DRDO ANURAG Lab, India) clusters, along with the comparison of the performance between GPUs and CPUs. The code thence has been further optimized for the latest GPU architectures. This optimized code has been throughly tested on a recent GPU-cluster, Prometheus (each node of the cluster has 8 V100 GPUs) and the strong results show that it is approximately twice as fast as the previous generation of GPUs (P100). We further demonstrate that ANUROOP scales almost linearly up to 25 nodes of Prometheus cluster. 
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
+
 with K20 and Intel Haswell CPUs. 
  
  In this work, we present the methodologies and optimization techniques used in converting an in-house compressible 
@@ -83,14 +98,8 @@ with K20 and Intel Haswell CPUs.
  single core, and 3.1x faster compared to one full Haswell node (24 cores). Thus GPUs provide remarkable speed-up
  without any loss of accuracy. Therefore GPUs can be used for computing complex fluid-dynamical problems to get 
  accurate results in a realistic time-frame.
-\end{abstract}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Extended abstract}
-In this work, we present the methodologies and optimization techniques used in converting an in-house compressible
-Direct Numerical Simulation (DNS) code from C++ to GPU-enabled CUDA. This code, named ANUROOP, has been developed 
-at JNCASR, Bengaluru to simulate the complex flow past gas turbine blades in an unstructured finite-volume framework. 
-To assess the performance of the GPU-accelerated ANUROOP, we have conducted weak and strong scaling experiments. 
+ 
+ To assess the performance of the GPU-accelerated ANUROOP, we have conducted weak and strong scaling experiments. 
 Weak scaling experiments are performed on an IBM Power System S822LC cluster code-named Minsky (USA), and strong
 scaling experiments are conducted on both Minsky and DHRUVA-3 (DRDO ANURAG Lab, India) clusters.  Minsky has four
 P100 GPUs in each node with a total of 34 nodes, while DHRUVA-3 has two K20 GPUs in each node with a total 114 nodes.
@@ -101,6 +110,3 @@ past the widely studied low-pressure turbine blade T106A has been chosen as the 
 ANUROOP is approximately 110x faster compared to a run on a single-CPU on SahasraT, while when compared to one full 
 node (24 CPU cores), the speed-up obtained is 3.1x. In the comparison between GPUs, we have observed that the code on 
 the P100 runs 2.7x faster compared to a K40 GPU. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{document}
